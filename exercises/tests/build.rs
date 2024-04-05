@@ -6,10 +6,10 @@ fn main() {
     // In tests7, we should set up an environment variable
     // called `TEST_FOO`. Print in the standard output to let
     // Cargo do it.
-    // let timestamp = std::time::SystemTime::now()
-    //     .duration_since(std::time::UNIX_EPOCH)
-    //     .unwrap()
-    //     .as_secs(); // What's the use of this timestamp here?
+    let timestamp = std::time::SystemTime::now()
+        .duration_since(std::time::UNIX_EPOCH)
+        .unwrap()
+        .as_secs(); // What's the use of this timestamp here?
  
     // let your_command = format!(
     //     "rustc-env=TEST_FOO={}",
@@ -20,6 +20,6 @@ fn main() {
     // In tests8, we should enable "pass" feature to make the
     // testcase return early. Fill in the command to tell
     // Cargo about that.
-    let your_command = "rustc-cfg=feature =\"pass\"";
+    let your_command = format!("rustc-cfg=feature=\"pass\" rustc-env=TEST_FOO={}",timestamp);
     println!("cargo:{}", your_command);
 }
